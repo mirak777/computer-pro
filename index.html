@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Satakshi Computer | Premium Tech Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- FONT: Rajdhani for a Futuristic Tech Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-color: #030712;
-            --card-bg: rgba(17, 24, 39, 0.6);
+            --card-bg: rgba(17, 24, 39, 0.7);
             --primary-cyan: #22d3ee;
             --accent-gold: #fbbf24;
             --neon-purple: #818cf8;
@@ -16,6 +19,45 @@
             --text-dim: #94a3b8;
             --glass-border: rgba(255, 255, 255, 0.08);
             --neon-glow: 0 0 15px rgba(34, 211, 238, 0.4);
+        }
+
+        /* DISCO LIGHT ANIMATIONS */
+        @keyframes discoText {
+            0% { color: #ff0000; text-shadow: 0 0 20px #ff0000; }
+            20% { color: #ffff00; text-shadow: 0 0 20px #ffff00; }
+            40% { color: #00ff00; text-shadow: 0 0 20px #00ff00; }
+            60% { color: #00eaff; text-shadow: 0 0 20px #00eaff; }
+            80% { color: #ff00ff; text-shadow: 0 0 20px #ff00ff; }
+            100% { color: #ff0000; text-shadow: 0 0 20px #ff0000; }
+        }
+
+        @keyframes discoBorder {
+            0% { border-color: #ff0055; box-shadow: 0 0 15px #ff0055; }
+            50% { border-color: #00ddff; box-shadow: 0 0 25px #00ddff; }
+            100% { border-color: #ccff00; box-shadow: 0 0 15px #ccff00; }
+        }
+
+        @keyframes floatLogo {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes bgDisco {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes zoomRotate {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(34, 211, 238, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
         }
 
         .light-mode {
@@ -26,52 +68,30 @@
             --glass-border: rgba(0, 0, 0, 0.1);
         }
 
-        /* --- NEW MOBILE VIEW CLASSES --- */
-        /* This kicks in when the toggle is active on mobile screens */
-        @media (max-width: 768px) {
-            .mobile-view-active .grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 10px !important;
-            }
-            .mobile-view-active .card {
-                padding: 12px !important;
-                border-radius: 15px !important;
-            }
-            .mobile-view-active .card img {
-                height: 110px !important;
-                margin-bottom: 10px !important;
-            }
-            .mobile-view-active .card h3 {
-                font-size: 0.85rem !important;
-                margin: 5px 0 !important;
-            }
-            .mobile-view-active .btn-action {
-                padding: 8px !important;
-                font-size: 0.7rem !important;
-                border-radius: 8px !important;
-            }
-        }
-
         #founderModal {
             display: none; position: fixed; z-index: 5000; left: 0; top: 0;
-            width: 100%; height: 100%; background: rgba(0,0,0,0.9);
-            backdrop-filter: blur(10px); align-items: center; justify-content: center;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(15px); align-items: center; justify-content: center;
         }
         .modal-content {
             background: var(--bg-color); border: 2px solid var(--primary-cyan);
             padding: 40px; border-radius: 30px; width: 90%; max-width: 500px;
             text-align: center; position: relative; animation: modalPop 0.4s ease-out;
+            box-shadow: 0 0 50px var(--primary-cyan);
         }
         @keyframes modalPop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .close-modal { position: absolute; top: 20px; right: 20px; font-size: 25px; cursor: pointer; color: var(--text-dim); }
 
-        * { box-sizing: border-box; transition: background 0.3s, color 0.3s, transform 0.3s; }
+        * { box-sizing: border-box; transition: background 0.3s, color 0.3s; }
 
         body {
-            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
             margin: 0;
             background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 20% 30%, rgba(34, 211, 238, 0.05) 0%, transparent 40%);
+            background: linear-gradient(-45deg, #030712, #0f172a, #1e1b4b, #2e1065);
+            background-size: 400% 400%;
+            animation: bgDisco 15s ease infinite;
             color: var(--text-light);
             overflow-x: hidden;
             width: 100%;
@@ -91,6 +111,7 @@
             object-fit: cover;
             box-shadow: var(--neon-glow);
             transition: 0.3s;
+            animation: floatLogo 4s ease-in-out infinite;
         }
         .round-logo:hover { transform: rotate(15deg) scale(1.1); }
 
@@ -110,9 +131,8 @@
             display: flex; align-items: center; justify-content: center;
             color: var(--primary-cyan); text-decoration: none; transition: 0.3s;
             backdrop-filter: blur(10px);
-            cursor: pointer;
         }
-        .social-icon:hover { transform: scale(1.2); color: var(--accent-gold); box-shadow: var(--neon-glow); }
+        .social-icon:hover { transform: scale(1.2); color: var(--accent-gold); box-shadow: var(--neon-glow); animation: discoBorder 0.5s infinite; }
 
         header {
             background: linear-gradient(to bottom, rgba(3, 7, 18, 0.7), var(--bg-color)), 
@@ -124,53 +144,86 @@
         }
 
         header h1 {
-            font-size: clamp(2.8rem, 10vw, 5.5rem); margin: 0;
-            background: linear-gradient(135deg, #fff 30%, var(--primary-cyan));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            letter-spacing: 8px; filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.3));
+            font-size: clamp(3rem, 10vw, 6rem); margin: 0;
+            animation: discoText 3s linear infinite;
+            letter-spacing: 5px; 
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         nav {
             background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(20px);
-            padding: 12px; position: sticky; top: 0; z-index: 1000;
+            padding: 15px; position: sticky; top: 0; z-index: 1000;
             border-bottom: 1px solid var(--glass-border);
-            display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;
+            display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;
         }
 
         nav button {
             background: transparent; border: 1px solid transparent;
-            padding: 10px 20px; cursor: pointer; font-weight: 700;
-            border-radius: 50px; color: var(--text-dim); text-transform: uppercase; font-size: 0.75rem;
+            padding: 10px 25px; cursor: pointer; font-weight: 700;
+            border-radius: 5px; color: var(--text-dim); text-transform: uppercase; 
+            font-size: 0.9rem; letter-spacing: 1px;
+            font-family: 'Rajdhani', sans-serif;
         }
 
         nav button:hover, nav button.active-nav {
-            color: var(--primary-cyan); border-color: var(--primary-cyan); box-shadow: var(--neon-glow);
+            color: #fff;
+            animation: discoBorder 1s infinite alternate;
+            background: rgba(255,255,255,0.05);
+            text-shadow: 0 0 10px var(--primary-cyan);
         }
 
         .quick-features {
             display: flex; justify-content: center; gap: 40px; padding: 40px; flex-wrap: wrap;
         }
-        .f-item { text-align: center; }
-        .f-item i { font-size: 2rem; color: var(--accent-gold); margin-bottom: 10px; display: block; }
-        .f-item span { font-size: 0.8rem; font-weight: 800; color: var(--text-dim); }
+        .f-item { text-align: center; transition: transform 0.3s; }
+        .f-item:hover { transform: scale(1.1); animation: discoText 1s infinite; }
+        .f-item i { font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 10px; display: block; }
+        .f-item span { font-size: 1rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; }
 
-        section { padding: 80px 8%; display: none; max-width: 1300px; margin: auto; }
+        section { padding: 80px 8%; display: none; max-width: 1400px; margin: auto; }
         section.active { display: block; animation: sectionReveal 0.6s ease-out; }
+        
+        @keyframes sectionReveal {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
 
         .card {
             background: var(--card-bg); backdrop-filter: blur(12px); padding: 25px;
-            border-radius: 30px; border: 1px solid var(--glass-border);
+            border-radius: 20px; border: 1px solid var(--glass-border);
             transition: 0.4s; text-align: center; position: relative;
+            overflow: hidden;
         }
-        .card:hover { transform: translateY(-10px); border-color: var(--primary-cyan); }
-        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 20px; margin-bottom: 20px; }
+        .card:hover { 
+            transform: translateY(-10px); 
+            animation: discoBorder 0.5s linear infinite; 
+        }
+        .card img { 
+            width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 20px; 
+            transition: transform 0.5s ease;
+        }
+        .card:hover img {
+            animation: zoomRotate 0.5s forwards;
+        }
+        
+        .card h3 { font-weight: 700; font-size: 1.4rem; color: var(--text-light); }
+        .card p { font-size: 0.95rem; line-height: 1.5; color: var(--text-dim); }
 
         .btn-action {
             background: linear-gradient(135deg, var(--primary-cyan), #0ea5e9);
-            color: #000; border: none; padding: 15px; border-radius: 15px;
-            width: 100%; font-weight: 900; cursor: pointer; margin-top: 10px;
+            color: #000; border: none; padding: 12px 20px; border-radius: 5px;
+            width: 100%; font-weight: 800; cursor: pointer; margin-top: 15px;
+            text-transform: uppercase; letter-spacing: 1px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+        }
+        .btn-action:hover {
+            box-shadow: 0 0 20px var(--primary-cyan);
+            animation: pulseBtn 1s infinite;
+            color: #fff;
         }
 
         /* AI ASSISTANT STYLES */
@@ -179,6 +232,7 @@
             width: 60px; height: 60px; background: var(--primary-cyan); 
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             font-size: 1.5rem; color: #000; cursor: pointer; box-shadow: var(--neon-glow);
+            animation: floatLogo 3s infinite;
         }
         #chat-box {
             position: absolute; bottom: 80px; right: 0; width: 320px; max-height: 450px;
@@ -196,11 +250,28 @@
         }
 
         footer { background: #010409; padding: 60px 20px; text-align: center; border-top: 1px solid var(--glass-border); }
-        .creator-info { font-size: 0.75rem; color: var(--text-dim); margin-top: 20px; opacity: 0.9; }
+        .creator-info { font-size: 0.9rem; color: var(--text-dim); margin-top: 20px; opacity: 0.9; }
         .creator-info a { color: var(--primary-cyan); text-decoration: none; font-weight: bold; }
         .dev-badge {
-            margin-top: 15px; font-size: 0.8rem; background: rgba(129, 140, 248, 0.2); 
+            margin-top: 15px; font-size: 0.9rem; background: rgba(129, 140, 248, 0.2); 
             padding: 5px 10px; border-radius: 8px; border: 1px solid var(--neon-purple); display: inline-block;
+        }
+        
+        /* Specific Style for Chip Level Info List */
+        .chip-level-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-top: 15px;
+        }
+        .chip-level-list li {
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        .chip-level-list i {
+            color: var(--primary-cyan);
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -213,10 +284,10 @@
         <h2 style="color:var(--primary-cyan); margin:0;">Kamal Bhandari</h2>
         <p style="color:var(--accent-gold); font-weight:bold;">Founder & CEO (Age: 26)</p>
         <hr style="border:0; border-top:1px solid var(--glass-border); margin:20px 0;">
-        <div style="text-align:left; color:var(--text-dim); font-size:0.9rem;">
+        <div style="text-align:left; color:var(--text-dim); font-size:1rem;">
             <p><i class="fas fa-phone-alt"></i> <b>Call Owner:</b> <a href="tel:9816910549" style="color:var(--primary-cyan); text-decoration:none;">9816910549</a></p>
             <p><i class="fas fa-store"></i> <b>Shop:</b> Satakshi Computer Hub</p>
-            <p><i class="fas fa-map-marker-alt"></i> <b>Address:</b> Jhiljhile, Jhapa (Shivatakshi-8)</p>
+            <p><i class="fas fa-map-marker-alt"></i> <b>Address:</b> Jhiljhile, Jhapa (Shivasatakshi-8)</p>
         </div>
         
         <div class="dev-badge">
@@ -228,16 +299,14 @@
 
 <div class="social-float">
     <a href="https://www.facebook.com/kamal.bhandari.695976" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-    <a class="social-icon" onclick="toggleTheme()"><i class="fas fa-adjust"></i></a>
-    <a class="social-icon" onclick="toggleMobileView()" title="Switch Mobile View">
-        <i id="view-icon" class="fas fa-th-large"></i>
-    </a>
+    <a href="#" class="social-icon" onclick="toggleTheme()"><i class="fas fa-adjust"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
 </div>
 
 <header>
     <div>
         <h1>Satakshi Computer</h1>
-        <p style="color: var(--primary-cyan); letter-spacing: 5px; font-weight: bold;">TECH EVOLUTION 2026</p>
+        <p style="color: var(--primary-cyan); letter-spacing: 5px; font-weight: bold; animation: sectionReveal 2s ease;">TECH EVOLUTION 2026</p>
     </div>
 </header>
 
@@ -263,8 +332,8 @@
 
 <section id="home" class="active">
     <div style="text-align: center; margin-bottom: 50px;">
-        <h2>The Standard of Hardware Excellence</h2>
-        <p style="color:var(--text-dim); max-width:800px; margin:auto;">Expert hardware solutions from Jhiljhile, Jhapa.</p>
+        <h2 style="font-size: 2.5rem; color: var(--primary-cyan);">The Standard of Hardware Excellence</h2>
+        <p style="color:var(--text-dim); max-width:800px; margin:auto; font-size: 1.2rem;">Expert hardware solutions from Jhiljhile, Jhapa.</p>
     </div>
     <div class="grid">
         <div class="card">
@@ -280,37 +349,94 @@
     </div>
 </section>
 
+<!-- UPDATED CATALOG: REMOVED SPECIFIC ITEMS -->
 <section id="products">
-    <h2 style="text-align:center; color:var(--primary-cyan);">Premium Catalog</h2>
+    <h2 style="text-align:center; color:var(--primary-cyan); font-size: 2.5rem; margin-bottom: 40px;">Premium Catalog</h2>
     <div class="grid">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1587831990711-23ca6441447b?auto=format&fit=crop&q=80&w=500">
+            <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=600" alt="Gaming PC">
             <h3>Custom Gaming PC</h3>
             <span style="color:var(--primary-cyan); font-weight:bold;">Rs. 145,000</span>
             <button class="btn-action" onclick="addToCart('Gaming PC')">ADD TO CART</button>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=500">
+            <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=600" alt="Printer">
             <h3>Epson EcoTank Printer</h3>
             <span style="color:var(--primary-cyan); font-weight:bold;">Rs. 24,500</span>
             <button class="btn-action" onclick="addToCart('Printer')">ADD TO CART</button>
         </div>
+        
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1557597774-9d2739f85a94?auto=format&fit=crop&q=80&w=500">
-            <h3>4K CCTV Camera</h3>
-            <span style="color:var(--primary-cyan); font-weight:bold;">Rs. 32,000</span>
-            <button class="btn-action" onclick="addToCart('CCTV')">ADD TO CART</button>
+            <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=600" alt="Laptop">
+            <h3>Gaming Laptop (Acer/Dell)</h3>
+            <p>i7 12th Gen, RTX 3050</p>
+            <span style="color:var(--primary-cyan); font-weight:bold;">Rs. 110,000</span>
+            <button class="btn-action" onclick="addToCart('Laptop')">ADD TO CART</button>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=600" alt="SSD">
+            <h3>NVMe SSD (512GB)</h3>
+            <p>Boost your PC speed 10x</p>
+            <span style="color:var(--primary-cyan); font-weight:bold;">Rs. 6,500</span>
+            <button class="btn-action" onclick="addToCart('SSD')">ADD TO CART</button>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=600" alt="Monitor">
+            <h3>24" IPS Monitor</h3>
+            <p>Border-less Display 75Hz</p>
+            <span style="color:var(--primary-cyan); font-weight:bold;">Rs. 18,000</span>
+            <button class="btn-action" onclick="addToCart('Monitor')">ADD TO CART</button>
         </div>
     </div>
 </section>
 
+<!-- UPDATED SERVICES: ADDED CHIP LEVEL INFO -->
 <section id="services">
-    <h2 style="text-align:center;">Our Expertise</h2>
+    <h2 style="text-align:center; font-size: 2.5rem; margin-bottom: 40px;">Our Expertise & Services</h2>
     <div class="grid">
+        
+        <!-- EXPANDED CHIP LEVEL REPAIR CARD -->
+        <div class="card" style="grid-column: span 1; text-align: left;">
+            <div style="text-align: center;">
+                <i class="fas fa-microchip" style="font-size:3.5rem; color:var(--primary-cyan); margin-bottom:15px;"></i>
+                <h3 style="font-size: 1.8rem;">Advanced Chip-Level Repair</h3>
+            </div>
+            <p style="text-align:center; margin-bottom:15px;">We provide state-of-the-art repair services for all electronic logic boards.</p>
+            
+            <ul class="chip-level-list">
+                <li><i class="fas fa-check-circle"></i> Dead Laptop Motherboard Repair</li>
+                <li><i class="fas fa-check-circle"></i> Bios Programming & EC Flashing</li>
+                <li><i class="fas fa-check-circle"></i> Short Circuit Removal (19V/3V/5V)</li>
+                <li><i class="fas fa-check-circle"></i> Graphic Chip (GPU) Reballing</li>
+                <li><i class="fas fa-check-circle"></i> Liquid Damage Chemical Wash</li>
+                <li><i class="fas fa-check-circle"></i> Display & Hinge Replacement</li>
+            </ul>
+        </div>
+        
         <div class="card">
-            <i class="fas fa-tools" style="font-size:3rem; color:var(--primary-cyan); margin-bottom:15px;"></i>
-            <h3>Chip-Level Repair</h3>
-            <p>Motherboard repair and hardware maintenance.</p>
+            <i class="fas fa-compact-disc" style="font-size:3rem; color:var(--accent-gold); margin-bottom:15px;"></i>
+            <h3>Software Installation</h3>
+            <p>Windows 10/11, Office, Photoshop, Tally, and Antivirus Setup.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-hdd" style="font-size:3rem; color:var(--neon-purple); margin-bottom:15px;"></i>
+            <h3>Data Recovery</h3>
+            <p>Recover lost files from corrupted Hard Drives, Pen Drives, and SD Cards.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-print" style="font-size:3rem; color:#10b981; margin-bottom:15px;"></i>
+            <h3>Printer Repair</h3>
+            <p>Cartridge refilling, head cleaning, and paper jam fixing (Canon/Epson).</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-video" style="font-size:3rem; color:#ef4444; margin-bottom:15px;"></i>
+            <h3>CCTV Maintenance</h3>
+            <p>Camera installation, DVR configuration, and Mobile View setup.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-network-wired" style="font-size:3rem; color:var(--primary-cyan); margin-bottom:15px;"></i>
+            <h3>Network Setup</h3>
+            <p>Office LAN cabling, Router configuration, and Wi-Fi range extension.</p>
         </div>
     </div>
 </section>
@@ -320,8 +446,9 @@
     <div class="grid">
         <div class="card">
             <h3>Visit Hub</h3>
-            <p>Jhiljhile, Jhapa (Near Chimiki Bank)</p>
-            <button class="btn-action" onclick="window.open('https://maps.google.com')">Open Map</button>
+            <p>Jhiljhile, Jhapa (Shivasatakshi-8)</p>
+            <p style="font-size: 0.8rem; color: var(--text-dim);">Near Chimmeki Bank</p>
+            <button class="btn-action" onclick="window.open('https://maps.app.goo.gl/N85Bq8z3R3R3R3R3')">Open Map</button>
         </div>
         <div class="card">
             <h3>Instant Query</h3>
@@ -342,15 +469,18 @@
         <div class="ai-options">
             <button class="opt-btn" onclick="askAI('address')">📍 Where is the shop?</button>
             <button class="opt-btn" onclick="askAI('products')">🛒 What do you sell?</button>
+            <button class="opt-btn" onclick="askAI('services')">🛠 What services?</button>
             <button class="opt-btn" onclick="askAI('founder')">👤 Who is the owner?</button>
+            <button class="opt-btn" onclick="askAI('payment')">💸 Payment options?</button>
+            <button class="opt-btn" onclick="askAI('warranty')">🛡 Warranty?</button>
         </div>
     </div>
     <div id="chat-btn" onclick="toggleChat()"><i class="fas fa-robot"></i></div>
 </div>
 
 <footer>
-    <p>© 2026 ITTI COMPUTER WORLD PVT. LTD.</p>
-    <p style="color:var(--primary-cyan); font-weight: bold;">SHATAKSHI COMPUTER HUB</p>
+    <p>© 2026 SATAKSHI COMPUTER PVT. LTD.</p>
+    <p style="color:var(--primary-cyan); font-weight: bold; animation: discoText 3s infinite;">SATAKSHI COMPUTER HUB</p>
     <div class="creator-info">
         <p>Website Created by: <b>Mirak Limbu</b></p>
         <p><i class="fas fa-phone"></i> <a href="tel:9818540466">9818540466</a></p>
@@ -382,9 +512,13 @@
     function askAI(topic) {
         const content = document.getElementById('chat-content');
         let response = "";
-        if(topic === 'address') response = "📍 We are located in <b>Jhiljhile, Jhapa</b> near Chimiki Bank.";
-        else if(topic === 'products') response = "🛒 We sell <b>Gaming PCs, Printers, CCTV</b>, and more!";
+        
+        if(topic === 'address') response = "📍 We are located in <b>Jhiljhile, Jhapa (Shivasatakshi-8)</b> near Chimmeki Bank.";
+        else if(topic === 'products') response = "🛒 We sell <b>Gaming PCs, Printers, CCTV, Laptops, Routers</b>, and more!";
         else if(topic === 'founder') response = "👤 Our owner is <b>Kamal Bhandari</b>. You can call him at 9816910549.";
+        else if(topic === 'services') response = "🛠 We offer <b>Chip-level repair, Software installation, Data Recovery, Printer Repair</b>, and Network Setup.";
+        else if(topic === 'payment') response = "💸 We accept <b>Cash, Esewa, Khalti</b>, and Mobile Banking.";
+        else if(topic === 'warranty') response = "🛡 All our new products come with <b>1-Year Genuine Warranty</b>.";
 
         const bubble = document.createElement('div');
         bubble.className = "chat-bubble";
@@ -402,24 +536,9 @@
         modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
     }
 
-    /* --- NEW MOBILE VIEW TOGGLE LOGIC --- */
-    function toggleMobileView() {
-        const body = document.getElementById('mainBody');
-        const icon = document.getElementById('view-icon');
-        body.classList.toggle('mobile-view-active');
-        
-        if(body.classList.contains('mobile-view-active')) {
-            icon.className = "fas fa-th"; // Grid icon
-            showToast("Compact View Enabled");
-        } else {
-            icon.className = "fas fa-th-large"; // Large grid icon
-            showToast("Standard View Enabled");
-        }
-    }
-
     function showToast(m) {
         const t = document.createElement('div');
-        t.style = "position:fixed; bottom:100px; left:50%; transform:translateX(-50%); background:var(--primary-cyan); color:black; padding:10px 20px; border-radius:50px; font-weight:bold; z-index:9999; box-shadow: 0 5px 15px rgba(0,0,0,0.3);";
+        t.style = "position:fixed; bottom:100px; left:50%; transform:translateX(-50%); background:var(--primary-cyan); color:black; padding:10px 20px; border-radius:50px; font-weight:bold; z-index:9999;";
         t.innerText = m;
         document.body.appendChild(t);
         setTimeout(() => t.remove(), 2000);
